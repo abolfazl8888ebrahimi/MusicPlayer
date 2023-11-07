@@ -21,8 +21,8 @@ ShowSongName = tk.Text(
 )
 ShowSongName.grid(row=0, column=0, padx=17, pady=13)
 
-ShowStatusMusic = tk.Label(trackframe, bg="white", fg="black", width=15)
-ShowStatusMusic.grid(row=0, column=1)
+ShowStatus = tk.Label(trackframe, bg="white", fg="black", width=15)
+ShowStatus.grid(row=0, column=1)
 
 # --------- control panel ---------
 
