@@ -1,10 +1,41 @@
 import tkinter as tk
+import os
 import pygame as pg
 
 root = tk.Tk()
 root.title("Music Player")
 root.geometry("600x400")  # size of window
 root.resizable(0, 0)  # user cant resize window
+
+Status = tk.StringVar()
+pg.init()
+pg.mixer.init()
+
+
+# --------- Button Functions ---------
+
+
+def PlaySong():
+    ShowSongName.config(state="normal")
+    ShowSongName.delete("1.0", "end")
+    ShowSongName.insert("1.0", PlayList.get("active"))
+    ShowSongName.config(state="disabled")
+    Status.set("playing")
+    pg.mixer.music.load(PlayList.get("active"))
+    pg.mixer.music.play()
+
+
+def StopSong():
+    Status.set("Stopped")
+    pg.mixer.music.stop()
+
+
+def UnpauseSong():
+    pass
+
+
+def PauseSong():
+    pass
 
 
 # --------- song play list ---------
@@ -18,10 +49,11 @@ PlayList = tk.Listbox(
     SongFrame,
     bg="silver",
     fg="black",
-    font=("Arial", 5),
+    font=("Arial", 10),
     selectmode="single",
     selectbackground="black",
     height=100,
+    yscrollcommand=Scrolly.set,
 )
 Scrolly.config(command=PlayList.yview)
 Scrolly.pack(fill="y", side="right")
@@ -40,7 +72,7 @@ ShowSongName = tk.Text(
 )
 ShowSongName.grid(row=0, column=0, padx=17, pady=13)
 
-ShowStatus = tk.Label(trackframe, bg="white", fg="black", width=15)
+ShowStatus = tk.Label(trackframe, bg="white", fg="black", width=15, textvariable=Status)
 ShowStatus.grid(row=0, column=1)
 
 # --------- control panel ---------
@@ -50,15 +82,23 @@ CtrPanel = tk.LabelFrame(
 )
 CtrPanel.place(x=10, y=308, width=580, height=90)
 
-PlayBtn = tk.Button(CtrPanel, text="play", width=15)
+PlayBtn = tk.Button(CtrPanel, text="play", width=15, command=PlaySong)
 PlayBtn.grid(row=0, column=0, padx=10, pady=17)
 
-StopBtn = tk.Button(CtrPanel, text="Stop", width=15)
+StopBtn = tk.Button(CtrPanel, text="Stop", width=15, command=StopSong)
 StopBtn.grid(row=0, column=1, padx=10, pady=17)
 
-UnpuaseBtn = tk.Button(CtrPanel, text="Unpuasing", width=15)
+UnpuaseBtn = tk.Button(CtrPanel, text="Unpuasing", width=15, command=UnpauseSong)
 UnpuaseBtn.grid(row=0, column=2, padx=10, pady=17)
 
-PuaseBtn = tk.Button(CtrPanel, text="Puase", width=15)
+PuaseBtn = tk.Button(CtrPanel, text="Puase", width=15, command=PauseSong)
 PuaseBtn.grid(row=0, column=3, padx=10, pady=17)
+
+
+os.chdir(r"C:\Users\reza\Desktop\MyFile\MusicPlayer-Python\MusicPlayer\song")
+MySong = os.listdir()
+for song in MySong:
+    if ".mp3" in song:
+        PlayList.insert("end", song)
+
 root.mainloop()
