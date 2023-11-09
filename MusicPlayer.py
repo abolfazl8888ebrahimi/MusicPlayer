@@ -31,11 +31,14 @@ def StopSong():
 
 
 def UnpauseSong():
-    pass
+    Status.set("Unpausing")
+    pg.mixer.music.unpause()
 
 
 def PauseSong():
-    pass
+    Status.set("Paused")
+    pg.mixer.music.pause()
+    
 
 
 # --------- song play list ---------
