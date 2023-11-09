@@ -7,3 +7,6 @@
 <h1 align="center">How To Use .exe File</h1>
 <hr>
 <h2>Go To dist/MusicPlayer/MusicPlayer.exe</h2> 
+<h1 align="center">Gallery</h1>
+<hr>
+<img align="center" src="img.PNG" alt="">
