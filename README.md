@@ -9,4 +9,4 @@
 <h2>Go To dist/MusicPlayer/MusicPlayer.exe</h2> 
 <h1 align="center">Gallery</h1>
 <hr>
-<img align="center" src="img.PNG" alt="">
+<P align="center"><img  src="img.PNG" alt=""></P>
