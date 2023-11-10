@@ -1,6 +1,7 @@
 import tkinter as tk
 import os
 import pygame as pg
+from tkinter.filedialog import askdirectory
 
 root = tk.Tk()
 root.title("Music Player")
@@ -98,7 +99,7 @@ PuaseBtn = tk.Button(CtrPanel, text="Puase", width=15, command=PauseSong)
 PuaseBtn.grid(row=0, column=3, padx=10, pady=17)
 
 
-os.chdir(r"C:\Users\reza\Desktop\MyFile\MusicPlayer-Python\MusicPlayer\song")
+os.chdir(askdirectory())
 MySong = os.listdir()
 for song in MySong:
     if ".mp3" in song:
